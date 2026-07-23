@@ -1,11 +1,17 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Main page</title>
-</head>
-<body>
-    
-</body>
-</html>
+{% extends "blog/base.html" %}
+
+{% block title %} {{ title }}{% endblock %}
+{% block content %}
+    <h1>Welcome to My Blog</h1>
+    {% for post in news %}
+    <div>
+        <h2>{{post.title}}</h2>
+        <p>{{post.text}}</p>
+        {% if post.author%}
+        <p><small>{{post.date}} by {{post.author}}</small></p>
+        {% else %}
+        <p><small>{{post.date}} by <b>Anonymous</b></small></p>
+        {% endif %}
+    </div>
+    {% endfor %}
+{% endblock %}
